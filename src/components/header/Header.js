@@ -29,7 +29,7 @@ const Header = () => {
     };
 
     return (
-        <AppBar>
+        <AppBar className={classes.appbar}>
             <Toolbar className={classes.toolbar}>
                 <Typography className={classes.header}>DailyNeeds</Typography>
                 <div className={classes.pages}>
