@@ -1,14 +1,44 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import styles from "./styles/headerStyles";
 
 
 const Header = () => {
-    return (   
-            <AppBar>
-                <Toolbar >
-                    <Typography>DailyNeeds</Typography>
-                </Toolbar>
-            </AppBar>
+    const classes = styles();
+
+    const PriceListSection = () => {
+        return (
+            <a href="/" className={classes.priceListLink} >
+                <Typography className={classes.priceList}>
+                    Price List
+                </Typography>
+            </a>
+        )
+
+    };
+
+    const BillSection = () => {
+        return (
+            <a href="/" className={classes.billLink}>
+                <Typography className={classes.bill}>
+                    Bill
+                </Typography>
+            </a>
+        )
+
+    };
+
+    return (
+        <AppBar>
+            <Toolbar className={classes.toolbar}>
+                <Typography className={classes.header}>DailyNeeds</Typography>
+                <div className={classes.pages}>
+                    {PriceListSection()}
+                    {BillSection()}
+                </div>
+
+            </Toolbar>
+        </AppBar>
     )
-}
+};
 export default Header;
