@@ -1,9 +1,8 @@
 import axios from 'axios';
-
-const urls = "http://localhost:8080";
+import { urls } from '../../../config/env-config';
 
 export default {
     get: async (path) => {
-        return axios.get(`${urls}/${path}`);
+        return axios.get(`${urls.service}/${path}`);
     },
 };

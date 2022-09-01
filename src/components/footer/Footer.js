@@ -21,7 +21,6 @@ const Footer = () => {
     fetchCurrentVersion();
   }, []);
 
-  
   return (
     <Box className={classes.footer}>
       <div className={classes.footerText}><p>Application Version : {CurrentVersion}</p></div>
