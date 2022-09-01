@@ -1,7 +1,10 @@
 import { makeStyles } from "@material-ui/core";
 
 export default makeStyles(() => ({
-    
+
+    appbar:{
+        position:"fixed"
+    },
     toolbar: {
         display: "flex",
         justifyContent: "space-between",
