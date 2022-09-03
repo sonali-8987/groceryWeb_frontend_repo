@@ -2,8 +2,8 @@ import { makeStyles } from "@material-ui/core";
 
 export default makeStyles(() => ({
 
-    appbar:{
-        position:"fixed"
+    appbar: {
+        position: "fixed"
     },
     toolbar: {
         display: "flex",
@@ -12,6 +12,7 @@ export default makeStyles(() => ({
 
     },
     header: {
+        color: 'white',
         fontWeight: "bold",
         fontSize: "22px",
     },
@@ -21,15 +22,8 @@ export default makeStyles(() => ({
         justifyContent: "space-between"
     },
 
-    priceListLink: {
-        alignItems: "center",
-        cursor: "pointer",
-        color: "white"
-    },
-    billLink: {
-        alignItems: "center",
-        cursor: "pointer",
-        color: "white"
+    linkStyle: {
+        textDecoration: "none",
     },
 
     priceList: {

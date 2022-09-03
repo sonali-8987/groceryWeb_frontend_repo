@@ -1,18 +1,17 @@
-import { Container } from '@material-ui/core';
-import Footer from './components/footer/Footer';
-import Header from './components/header/Header';
+import Home from './components/home/Home';
 import RootRouter from './components/router/RootRouter';
-import {Box} from '@material-ui/core';
+
+import { BrowserRouter } from 'react-router-dom';
 
 
 function App() {
   return (
-   <>
-      <Header />
-     <RootRouter />
-      <Footer />
-      
-   </>
+    <BrowserRouter>
+
+      <Home />
+      <RootRouter />
+
+    </BrowserRouter>
 
   );
 }
