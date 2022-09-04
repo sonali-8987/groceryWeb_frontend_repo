@@ -1,15 +1,16 @@
 import { Typography, Button } from "@material-ui/core";
-
 import styles from "./styles/priceListStyles";
 import { React, useState } from "react";
 import AddProductDialog from "./AddProductDialog";
-
+import useCategory from "./hooks/useCategory";
 
 
 
 const PriceList = () => {
     const classes = styles();
-   
+
+    const { categories } = useCategory();
+ 
     const emptyCategory = [
         {
           id : "",
@@ -31,6 +32,7 @@ const PriceList = () => {
                 color="primary"
                 onClick={() => {
                     setAddProductDialogPopUp(true);
+                    setAllCategory(categories);
                 }}
                 className={classes.addProductButton}
             >

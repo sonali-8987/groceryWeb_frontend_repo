@@ -21,6 +21,9 @@ const AddProductDialog = ({
     const [cost, setCost] = React.useState();
     const [item, setItem] = React.useState("");
 
+    const handleChange = (event) => {
+        setCategory(event.target.value);
+    };
 
     const handleItemChange = (event) => {
         setItem(event.target.value);
@@ -63,7 +66,7 @@ const AddProductDialog = ({
                                 <Select
                                     id="simple-select-standard"
                                     value={category}
-
+                                    onChange={handleChange}
                                     data-testid="dropDownId"
                                     MenuProps={{
                                         classes: { paper: classes.menuPaper }, anchorOrigin: {
@@ -76,14 +79,17 @@ const AddProductDialog = ({
                                         }, getContentAnchorEl: null
                                     }}
                                 >
+                                    {allCategory.map((category, index) => (
+                                        <MenuItem
+                                            key={index}
+                                            value={category.id}
 
-                                    <MenuItem
+                                            id="categoryInList"
+                                        >
+                                            {category.category}
 
-                                        id="categoryInList"
-                                    >
-
-                                    </MenuItem>
-
+                                        </MenuItem>
+                                    ))}
                                 </Select>
                             </FormControl>
                             {fetch}
