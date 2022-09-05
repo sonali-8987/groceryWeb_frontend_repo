@@ -4,6 +4,8 @@ import { React, useEffect, useState } from "react";
 import AddProductDialog from "./AddProductDialog";
 import useCategory from "./hooks/useCategory";
 import useProducts from "./hooks/useProducts";
+import useDeleteProduct from "./hooks/useDeleteProduct";
+
 import { TablePagination, TableCell, TableContainer, TableBody, Table, Paper, TableHead, TableRow } from "@material-ui/core";
 
 
@@ -15,12 +17,16 @@ const columns = [
 
 ];
 
+
 const PriceList = ({
 
 }) => {
     const classes = styles();
 
     const { categories } = useCategory();
+
+    const { deleteProduct, successMessage } = useDeleteProduct();
+
 
     const emptyCategory = [
         {
@@ -30,6 +36,7 @@ const PriceList = ({
     ];
 
     const { products } = useProducts();
+
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -45,14 +52,13 @@ const PriceList = ({
         setPage(0);
     };
 
-
     const [addProductDialogPopUp, setAddProductDialogPopUp] = useState(false);
     const [allCategory, setAllCategory] = useState(emptyCategory);
+
 
     return (
 
         <>
-
             <div className={classes.priceListContainer}>
 
                 <Button
@@ -81,7 +87,6 @@ const PriceList = ({
                                 {columns.map((column) => (
                                     <TableCell
                                         key={column.id}
-
                                         style={{ minWidth: column.minWidth }}
                                     >
                                         {column.label}
@@ -121,14 +126,13 @@ const PriceList = ({
 
                                                 }}
                                             >Edit</Button>
-
                                             <Button className={classes.deleteButton}
                                                 onClick={() => {
+                                                    deleteProduct(product.id);
+                                                    { successMessage() }
 
                                                 }}
                                             >Delete</Button>
-
-
                                         </TableRow>
                                     );
                                 })}
@@ -151,6 +155,7 @@ const PriceList = ({
                 open={addProductDialogPopUp}
                 allCategory={allCategory}
                 onClose={() => setAddProductDialogPopUp(false)}
+
 
             />
 
