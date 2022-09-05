@@ -17,5 +17,8 @@ export default makeStyles(() => ({
 
     addProductText: {
         fontWeight: "bold",
+    },
+    deleteButton:{
+        marginLeft:"25px"
     }
 }))

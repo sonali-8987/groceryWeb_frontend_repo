@@ -1,30 +1,38 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
 import styles from "./styles/headerStyles";
 import { Link } from 'react-router-dom';
 
+
+
 const Header = () => {
     const classes = styles();
+   
 
     return (
 
-        <AppBar className={classes.appbar}>
-            <Toolbar className={classes.toolbar}>
-                <Link to="/" className={classes.linkStyle}>
-                    <Typography className={classes.header}>DailyNeeds</Typography>
-                </Link>
-                <div className={classes.pages}>
-                    <Link to="/priceList" className={classes.linkStyle} >
-                        <Button className={classes.priceList}>Price List</Button>
+        <>
+            <AppBar className={classes.appbar}>
+                <Toolbar className={classes.toolbar}>
+                    <Link to="/" className={classes.linkStyle}>
+                        <Typography className={classes.header}>DailyNeeds</Typography>
                     </Link>
+                    <div className={classes.pages}>
+                        <Link to="/priceList" className={classes.linkStyle} >
+                            <Button className={classes.priceList}
+                                
+                            >
+                                Price List</Button>
+                        </Link>
 
-                    <Link to="/bill" className={classes.linkStyle}>
-                        <Button className={classes.bill}>Bill</Button>
-                    </Link>
-                </div>
+                        <Link to="/bill" className={classes.linkStyle}>
+                            <Button className={classes.bill}>Bill</Button>
+                        </Link>
+                    </div>
 
-            </Toolbar>
-        </AppBar>
+                </Toolbar>
+            </AppBar >
+        </>
 
     );
 };

@@ -34,6 +34,7 @@ const useAddProduct = () => {
 
                 response = responseData;
                 setShowsuccessMessage(true);
+                window.location.reload(true);
                 return response.data;
 
             });
