@@ -17,6 +17,10 @@ export default {
         return response.data;
 
     },
+    edit: async (payload) => {
+        const response = await apiService.put("edit_product", payload);
+        return response.data;
+    }
 
 }
 

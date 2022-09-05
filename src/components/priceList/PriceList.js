@@ -5,6 +5,8 @@ import AddProductDialog from "./AddProductDialog";
 import useCategory from "./hooks/useCategory";
 import useProducts from "./hooks/useProducts";
 import useDeleteProduct from "./hooks/useDeleteProduct";
+import EditProductDialog from "./EditProductDialog";
+
 
 import { TablePagination, TableCell, TableContainer, TableBody, Table, Paper, TableHead, TableRow } from "@material-ui/core";
 
@@ -37,7 +39,6 @@ const PriceList = ({
 
     const { products } = useProducts();
 
-
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -52,13 +53,18 @@ const PriceList = ({
         setPage(0);
     };
 
+
     const [addProductDialogPopUp, setAddProductDialogPopUp] = useState(false);
+    const [editProductDialogPopUp, setEditProductDialogPopUp] = useState(false);
+    const [editProductId, setEditProductId] = useState();
     const [allCategory, setAllCategory] = useState(emptyCategory);
+
 
 
     return (
 
         <>
+
             <div className={classes.priceListContainer}>
 
                 <Button
@@ -87,6 +93,7 @@ const PriceList = ({
                                 {columns.map((column) => (
                                     <TableCell
                                         key={column.id}
+
                                         style={{ minWidth: column.minWidth }}
                                     >
                                         {column.label}
@@ -121,18 +128,28 @@ const PriceList = ({
                                                 );
                                             })}
 
-                                            <Button
+                                            <Button className={classes.editButton}
+                                                color="primary"
+                                                variant="contained"
                                                 onClick={() => {
+                                                    setEditProductDialogPopUp(true);
+                                                    setAllCategory(categories);
+                                                    setEditProductId(product.id);
 
                                                 }}
                                             >Edit</Button>
+
                                             <Button className={classes.deleteButton}
+                                                color="primary"
+                                                variant="contained"
                                                 onClick={() => {
                                                     deleteProduct(product.id);
                                                     { successMessage() }
 
                                                 }}
                                             >Delete</Button>
+
+
                                         </TableRow>
                                     );
                                 })}
@@ -150,6 +167,7 @@ const PriceList = ({
                 />
             </Paper>
 
+
             <AddProductDialog
 
                 open={addProductDialogPopUp}
@@ -158,6 +176,12 @@ const PriceList = ({
 
 
             />
+            <EditProductDialog
+                open={editProductDialogPopUp}
+                allCategory={allCategory}
+                editProductId={editProductId}
+                onClose={() => setEditProductDialogPopUp(false)}
+            />
 
         </>
 
@@ -165,5 +189,3 @@ const PriceList = ({
 
 };
 export default PriceList;
-
-

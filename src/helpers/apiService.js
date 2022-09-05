@@ -14,5 +14,8 @@ export default {
     delete: async(path) => {
         return axios.delete(`${urls.service}/${path}`);
     },
+    put: async(path,payload) => {
+        return axios.put(`${urls.service}/${path}`,payload);
+    }
 
 };

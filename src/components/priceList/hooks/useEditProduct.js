@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Alert } from "@material-ui/lab";
 import { Snackbar } from "@material-ui/core";
 
-const useAddProduct = () => {
+const useEditProduct = () => {
 
     const [showSuccessMessage, setShowsuccessMessage] = useState(false);
 
@@ -12,12 +12,11 @@ const useAddProduct = () => {
     };
 
     const successMessage = () => {
-
         if (showSuccessMessage) {
 
             return (
 
-                <Snackbar open={true} autoHideDuration={4000} onClose={handleClose}>
+                <Snackbar open={showSuccessMessage} autoHideDuration={4000} onClose={handleClose}>
                     <Alert severity="success" sx={{ width: '100%' }}>
                         Product Added Successfully!
                     </Alert>
@@ -28,18 +27,14 @@ const useAddProduct = () => {
 
     };
 
-    const handleAddProduct = async (payload) => {
+    const handleEditProduct = async (payload) => {
         var response;
         try {
-            productsService.create(payload).then((responseData) => {
+            productsService.edit(payload).then((responseData) => {
 
                 response = responseData;
-
-                window.location.reload(true);
-
                 setShowsuccessMessage(true);
-
-
+                window.location.reload(true);
                 return response.data;
 
             });
@@ -48,9 +43,9 @@ const useAddProduct = () => {
     };
 
     return {
-        handleAddProduct: handleAddProduct,
+        handleEditProduct: handleEditProduct,
         successMessage: successMessage,
     };
 };
 
-export default useAddProduct;
+export default useEditProduct;

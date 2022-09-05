@@ -5,19 +5,19 @@ import { MenuItem } from "@material-ui/core";
 import { Select, Input, InputLabel, FormControl, Collapse } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import PropTypes from "prop-types";
-import useAddProduct from "./hooks/useAddProduct";
+import useEditProduct from "./hooks/useEditProduct";
 
 
-const AddProductDialog = ({
+const EditProductDialog = ({
     open,
     allCategory,
+    editProductId,
     onClose,
 
 }) => {
     const classes = styles();
 
-    const { handleAddProduct, successMessage } = useAddProduct();
-
+    const { handleEditProduct, successMessage } = useEditProduct();
 
     const [alertOpen, setAlertOpen] = React.useState(false);
     const [category, setCategory] = React.useState();
@@ -45,17 +45,17 @@ const AddProductDialog = ({
 
     const onSaveButtonClick = () => {
 
-
         if (category === null || item === null || item === "" || cost === null) {
             setAlertOpen(true);
         } else {
 
             const productDetail = {
+                id: editProductId,
                 item: item,
                 price: cost,
                 category_id: category
             };
-            handleAddProduct(productDetail);
+            handleEditProduct(productDetail);
 
             setCategory("")
             setCost();
@@ -160,7 +160,7 @@ const AddProductDialog = ({
                                 >Save
                                 </Button>
 
-                                  {successMessage()}  
+                                {successMessage()}
 
                             </div>
 
@@ -179,11 +179,11 @@ const AddProductDialog = ({
     );
 };
 
-AddProductDialog.propTypes = {
+EditProductDialog.propTypes = {
     open: PropTypes.bool.isRequired,
     allCategory: PropTypes.array.isRequired,
+    editProductId: PropTypes.number.isRequired,
     onClose: PropTypes.func.isRequired,
 };
 
-export default AddProductDialog;
-
+export default EditProductDialog;

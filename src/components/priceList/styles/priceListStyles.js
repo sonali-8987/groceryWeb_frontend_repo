@@ -20,5 +20,6 @@ export default makeStyles(() => ({
     },
     deleteButton:{
         marginLeft:"25px"
-    }
+    },
+    
 }))

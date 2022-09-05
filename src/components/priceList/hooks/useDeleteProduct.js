@@ -5,7 +5,6 @@ import { Snackbar } from "@material-ui/core";
 
 const useDeleteProduct = () => {
 
-
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     const handleClose = () => {
