@@ -1,12 +1,11 @@
 import { Button, Dialog, Typography } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React from "react";
 import styles from './styles/addProductDialogStyles';
 import { MenuItem } from "@material-ui/core";
 import { Select, Input, InputLabel, FormControl, Collapse } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import PropTypes from "prop-types";
 import useAddProduct from "./hooks/useAddProduct";
-
 
 
 const AddProductDialog = ({
@@ -17,15 +16,13 @@ const AddProductDialog = ({
 }) => {
     const classes = styles();
 
-    const { handleAddProduct } = useAddProduct();
+    const { handleAddProduct, successMessage } = useAddProduct();
 
 
     const [alertOpen, setAlertOpen] = React.useState(false);
     const [category, setCategory] = React.useState();
     const [cost, setCost] = React.useState();
     const [item, setItem] = React.useState("");
-
-
 
     const handleChange = (event) => {
         setCategory(event.target.value);
@@ -42,28 +39,27 @@ const AddProductDialog = ({
     const handleClose = () => {
         setItem("");
         setCost();
-        console.log(category);
         setAlertOpen(false);
         onClose();
     };
 
     const onSaveButtonClick = () => {
 
-        if (category == null || item == null || item == "" ||  cost == null) {
+        if (category === null || item === null || item === "" || cost === null) {
             setAlertOpen(true);
         } else {
+
             const productDetail = {
                 item: item,
                 price: cost,
                 category_id: category
             };
             handleAddProduct(productDetail);
-            setAlertOpen(false);
+
             setCategory("")
             setCost();
             setItem("");
-            onClose();
-            window.location.reload(true);
+
         }
     };
 
@@ -114,7 +110,7 @@ const AddProductDialog = ({
                                     ))}
                                 </Select>
                             </FormControl>
-                            {fetch}
+
                             <Typography
                                 className={classes.item}
                                 variant="subtitle1"
@@ -160,7 +156,10 @@ const AddProductDialog = ({
                                     color="primary"
                                     onClick={onSaveButtonClick}
                                     className={classes.dialogButton}
-                                >Save</Button>
+                                >Save
+                                </Button>
+
+                                {successMessage()}
 
                             </div>
 

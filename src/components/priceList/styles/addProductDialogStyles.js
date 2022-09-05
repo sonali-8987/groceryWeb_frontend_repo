@@ -50,11 +50,15 @@ export default makeStyles(() => ({
         display: "flex",
         justifyContent: "flex-end",
         padding: "5px 0px 0px 0px",
-        marginRight: "30px",
         marginTop:"20px",
         marginRight:"auto",
         width:"8em"
       },
+
+      successPopup: {
+        marginTop: "350px",
+        justifyContent: "left",
+    }
       
 
 

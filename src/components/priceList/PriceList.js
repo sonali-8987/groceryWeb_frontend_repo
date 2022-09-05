@@ -42,9 +42,11 @@ const PriceList = () => {
             </Button>
 
             <AddProductDialog
+
                 open={addProductDialogPopUp}
                 allCategory={allCategory}
                 onClose={() => setAddProductDialogPopUp(false)}
+                
             
             />
         </div>
@@ -53,3 +55,5 @@ const PriceList = () => {
 
 };
 export default PriceList;
+
+
