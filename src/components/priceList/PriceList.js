@@ -6,16 +6,15 @@ import useCategory from "./hooks/useCategory";
 import useProducts from "./hooks/useProducts";
 import useDeleteProduct from "./hooks/useDeleteProduct";
 import EditProductDialog from "./EditProductDialog";
-
-
 import { TablePagination, TableCell, TableContainer, TableBody, Table, Paper, TableHead, TableRow } from "@material-ui/core";
 
 
-const columns = [
-    { id: 'category', label: 'CATEGORY', minWidth: 170 },
-    { id: 'item', label: 'ITEM', minWidth: 100 },
 
-    { id: 'price', label: 'PRICE', minWidth: 100 },
+const columns = [
+    { id: 'category', label: 'CATEGORY', width: 170 },
+    { id: 'item', label: 'ITEM', width: 100 },
+
+    { id: 'price', label: 'PRICE', width: 100 },
 
 ];
 
@@ -29,13 +28,6 @@ const PriceList = ({
 
     const { deleteProduct, successMessage } = useDeleteProduct();
 
-
-    const emptyCategory = [
-        {
-            id: "",
-            category: ""
-        },
-    ];
 
     const { products } = useProducts();
 
@@ -57,9 +49,6 @@ const PriceList = ({
     const [addProductDialogPopUp, setAddProductDialogPopUp] = useState(false);
     const [editProductDialogPopUp, setEditProductDialogPopUp] = useState(false);
     const [editProductId, setEditProductId] = useState();
-    const [allCategory, setAllCategory] = useState(emptyCategory);
-
-
 
     return (
 
@@ -73,7 +62,6 @@ const PriceList = ({
                     color="primary"
                     onClick={() => {
                         setAddProductDialogPopUp(true);
-                        setAllCategory(categories);
 
 
                     }}
@@ -84,6 +72,8 @@ const PriceList = ({
                     </Typography>
                 </Button>
             </div>
+
+
 
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                 <TableContainer sx={{ maxHeight: 440 }}>
@@ -118,6 +108,7 @@ const PriceList = ({
                                                 return (
                                                     <>
                                                         <TableCell key={column.id} align={column.align}>
+
                                                             {column.format && typeof value === 'number'
                                                                 ? column.format(value)
                                                                 : value}
@@ -133,7 +124,6 @@ const PriceList = ({
                                                 variant="contained"
                                                 onClick={() => {
                                                     setEditProductDialogPopUp(true);
-                                                    setAllCategory(categories);
                                                     setEditProductId(product.id);
 
                                                 }}
@@ -171,14 +161,14 @@ const PriceList = ({
             <AddProductDialog
 
                 open={addProductDialogPopUp}
-                allCategory={allCategory}
+                allCategory={categories}
                 onClose={() => setAddProductDialogPopUp(false)}
 
 
             />
             <EditProductDialog
                 open={editProductDialogPopUp}
-                allCategory={allCategory}
+                allCategory={categories}
                 editProductId={editProductId}
                 onClose={() => setEditProductDialogPopUp(false)}
             />
@@ -189,3 +179,4 @@ const PriceList = ({
 
 };
 export default PriceList;
+

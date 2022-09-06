@@ -17,19 +17,18 @@ const EditProductDialog = ({
 }) => {
     const classes = styles();
 
+
+
     const { handleEditProduct, successMessage } = useEditProduct();
 
     const [alertOpen, setAlertOpen] = React.useState(false);
     const [category, setCategory] = React.useState();
     const [cost, setCost] = React.useState();
     const [item, setItem] = React.useState("");
+    const [itemError, setItemError] = React.useState(null);
 
     const handleChange = (event) => {
         setCategory(event.target.value);
-    };
-
-    const handleItemChange = (event) => {
-        setItem(event.target.value);
     };
 
     const handleCostChange = (event) => {
@@ -43,25 +42,35 @@ const EditProductDialog = ({
         onClose();
     };
 
-    const onSaveButtonClick = () => {
 
-        if (category === null || item === null || item === "" || cost === null) {
-            setAlertOpen(true);
+    const itemValid = new RegExp("^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$");
+
+    const handleItemValidation = (event) => {
+        if (!itemValid.test(event.target.value)) {
+            setItemError('item is invalid');
         } else {
-
-            const productDetail = {
-                id: editProductId,
-                item: item,
-                price: cost,
-                category_id: category
-            };
-            handleEditProduct(productDetail);
-
-            setCategory("")
-            setCost();
-            setItem("");
-
+            setItemError(null);
         }
+        setItem(event.target.value);
+    };
+
+    const onUpdateButtonClick = () => {
+
+        const productDetail = {
+            item: item,
+            price: cost,
+            category_id: category
+        };
+        console.log(itemError);
+
+        if (category !== null && item !== null && cost !== null && itemError === null) {
+            handleEditProduct(productDetail);
+        }
+
+        setCategory("")
+        setCost();
+        setItem("");
+        setAlertOpen(false);
     };
 
 
@@ -77,7 +86,7 @@ const EditProductDialog = ({
 
                 <div className={classes.container}>
                     <Typography variant="h6" className={classes.dialogHeader}>
-                        Add Product
+                        Edit Product
                     </Typography>
                     <div className={classes.dialogContent}>
                         <div className={classes.dialogMain}>
@@ -125,12 +134,12 @@ const EditProductDialog = ({
                                 required
                                 id="item"
                                 name="item"
+                                value={item}
                                 className={classes.inputField}
-                                inputProps={{ step: "1", min: "0.00" }}
-                                onChange={handleItemChange}
+                                onChange={handleItemValidation}
                                 type="text"
                             />
-
+                            {itemError && <p id="itemInvalid" className={classes.errormessage}>{itemError}</p>}
                             <Typography
                                 className={classes.item}
                                 variant="subtitle1"
@@ -145,7 +154,6 @@ const EditProductDialog = ({
                                 id="number"
                                 name="item"
                                 className={classes.inputField}
-                                inputProps={{ step: "1", min: "0.00" }}
                                 onChange={handleCostChange}
                                 type="text"
 
@@ -155,9 +163,9 @@ const EditProductDialog = ({
                                     id="saveButton"
                                     variant="contained"
                                     color="primary"
-                                    onClick={onSaveButtonClick}
+                                    onClick={onUpdateButtonClick}
                                     className={classes.dialogButton}
-                                >Save
+                                >Update
                                 </Button>
 
                                 {successMessage()}
@@ -187,3 +195,4 @@ EditProductDialog.propTypes = {
 };
 
 export default EditProductDialog;
+

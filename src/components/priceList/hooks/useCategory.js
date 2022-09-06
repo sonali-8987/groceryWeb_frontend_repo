@@ -13,7 +13,7 @@ const useCategory = () => {
 
   return {
 
-     categories: categories,
+    categories: categories,
   };
 };
 

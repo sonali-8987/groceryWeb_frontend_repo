@@ -24,11 +24,20 @@ const AddProductDialog = ({
     const [cost, setCost] = React.useState();
     const [item, setItem] = React.useState("");
 
+    const [itemError, setItemError] = React.useState(null);
+
     const handleChange = (event) => {
         setCategory(event.target.value);
     };
 
-    const handleItemChange = (event) => {
+    const itemValid = new RegExp("^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$");
+
+    const handleItemValidation = (event) => {
+        if (!itemValid.test(event.target.value)) {
+            setItemError('item is invalid');
+        } else {
+            setItemError(null);
+        }
         setItem(event.target.value);
     };
 
@@ -45,24 +54,22 @@ const AddProductDialog = ({
 
     const onSaveButtonClick = () => {
 
+        const productDetail = {
+            item: item,
+            price: cost,
+            category_id: category
+        };
+        console.log(itemError);
 
-        if (category === null || item === null || item === "" || cost === null) {
-            setAlertOpen(true);
-        } else {
-
-            const productDetail = {
-                item: item,
-                price: cost,
-                category_id: category
-            };
+        if (category !== null && item !== null && cost !== null && itemError === null) {
             handleAddProduct(productDetail);
-
-            setCategory("")
-            setCost();
-            setItem("");
-
         }
-    };
+
+        setCategory("")
+        setCost();
+        setItem("");
+        setAlertOpen(false);
+    }
 
 
     return (
@@ -126,10 +133,11 @@ const AddProductDialog = ({
                                 id="item"
                                 name="item"
                                 className={classes.inputField}
-                                inputProps={{ step: "1", min: "0.00" }}
-                                onChange={handleItemChange}
+                                onChange={handleItemValidation}
+                                value={item}
                                 type="text"
                             />
+                            {itemError && <p id="itemInvalid" className={classes.errormessage}>{itemError}</p>}
 
                             <Typography
                                 className={classes.item}
@@ -145,7 +153,6 @@ const AddProductDialog = ({
                                 id="number"
                                 name="item"
                                 className={classes.inputField}
-                                inputProps={{ step: "1", min: "0.00" }}
                                 onChange={handleCostChange}
                                 type="text"
 
@@ -160,7 +167,7 @@ const AddProductDialog = ({
                                 >Save
                                 </Button>
 
-                                  {successMessage()}  
+                                {successMessage()}
 
                             </div>
 
