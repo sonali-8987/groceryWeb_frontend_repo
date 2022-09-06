@@ -69,9 +69,11 @@ const EditProductDialog = ({
     const onUpdateButtonClick = () => {
 
         const productDetail = {
+            id: editProductId,
             item: item,
             price: cost,
-            category_id: category
+            category_id: category,
+            
         };
         console.log(itemError);
 

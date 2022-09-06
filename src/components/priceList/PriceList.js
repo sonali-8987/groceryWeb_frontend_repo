@@ -1,54 +1,43 @@
 import { Typography, Button } from "@material-ui/core";
 import styles from "./styles/priceListStyles";
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import AddProductDialog from "./AddProductDialog";
 import useCategory from "./hooks/useCategory";
 import useProducts from "./hooks/useProducts";
 import useDeleteProduct from "./hooks/useDeleteProduct";
 import EditProductDialog from "./EditProductDialog";
-import { TablePagination, TableCell, TableContainer, TableBody, Table, Paper, TableHead, TableRow } from "@material-ui/core";
+import MaterialTable from "@material-table/core";
+import Delete from '@material-ui/icons/Delete';
+import Edit from '@material-ui/icons/Edit'
 
 
+const PriceList = (
 
-const columns = [
-    { id: 'category', label: 'CATEGORY', width: 170 ,},
-    { id: 'item', label: 'ITEM', width: 100 },
-
-    { id: 'price', label: 'PRICE', width: 100 },
-
-];
-
-
-const PriceList = ({
-
-}) => {
+) => {
     const classes = styles();
+
+    const columns = [
+
+        {
+            title: 'CATEGORY', field: 'category.category'
+        },
+        {
+            title: 'ITEM', field: 'item'
+        },
+        {
+            title: 'PRICE', field: 'price'
+        },
+    ];
+   
 
     const { categories } = useCategory();
 
-    const { deleteProduct, successMessage } = useDeleteProduct();
-
-
+    const { deleteProduct } = useDeleteProduct();
     const { products } = useProducts();
-
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
-
-    const handleChangePage = (event, newPage) => {
-        console.log(newPage);
-        setPage(newPage);
-
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
-
 
     const [addProductDialogPopUp, setAddProductDialogPopUp] = useState(false);
     const [editProductDialogPopUp, setEditProductDialogPopUp] = useState(false);
-    const [editProductId, setEditProductId] = useState();
+    const [editProductId, setEditProductId] = useState(0);
 
     return (
 
@@ -74,88 +63,36 @@ const PriceList = ({
             </div>
 
 
-            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                <TableContainer sx={{ maxHeight: 440 , position:"fixed" }}>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                            <TableRow>
-                                {columns.map((column) => (
-                                    <TableCell
-                                        key={column.id}
 
-                                        style={{ minWidth: column.minWidth }}
-                                    >
-                                        {column.label}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {products
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((product) => {
-                                    return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={product.id}>
-                                            {columns.map((column) => {
-                                                let value;
-                                                if (column.id === "category") {
-                                                    value = product[column.id].category;
-                                                }
-                                                else {
-                                                    value = product[column.id];
-                                                }
-                                                return (
-                                                    <>
-                                                        <TableCell key={column.id} align={column.align}>
+            <MaterialTable
+                title="Product List"
+                data={products}
+                columns={columns}
+                options={{
+                    search: false,
+                    actionsColumnIndex: -1
+                }}
+                actions={[
+                    {
+                        icon: Edit,
+                        tooltip: 'Edit Product',
+                        onClick: (event, rowData) => {
 
-                                                            {column.format && typeof value === 'number'
-                                                                ? column.format(value)
-                                                                : value}
+                            setEditProductDialogPopUp(true);
+                            setEditProductId(rowData.id);
+                        },
 
-                                                        </TableCell>
-                                                    </>
+                    },
+                    {
+                        icon: Delete,
+                        tooltip: 'Delete Product',
+                        onClick: (event, rowData) => {
+                            deleteProduct(rowData.id);
+                        }
+                    }
+                ]}
 
-                                                );
-                                            })}
-
-                                            <Button className={classes.editButton}
-                                                color="primary"
-                                                variant="contained"
-                                                onClick={() => {
-                                                    setEditProductDialogPopUp(true);
-                                                    setEditProductId(product.id);
-
-                                                }}
-                                            >Edit</Button>
-
-                                            <Button className={classes.deleteButton}
-                                                color="primary"
-                                                variant="contained"
-                                                onClick={() => {
-                                                    deleteProduct(product.id);
-                                                    { successMessage() }
-
-                                                }}
-                                            >Delete</Button>
-
-
-                                        </TableRow>
-                                    );
-                                })}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[10, 25, 100]}
-                    component="div"
-                    count={products.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </Paper> 
-
+            />
 
             <AddProductDialog
 

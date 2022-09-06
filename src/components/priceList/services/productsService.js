@@ -1,6 +1,7 @@
 
 import apiService from "../../../helpers/apiService";
 
+// eslint-disable-next-line
 export default {
 
     create: async (payload) => {
