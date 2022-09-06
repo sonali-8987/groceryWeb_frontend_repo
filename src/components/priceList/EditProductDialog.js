@@ -25,7 +25,7 @@ const EditProductDialog = ({
     const [category, setCategory] = React.useState();
     const [cost, setCost] = React.useState();
     const [item, setItem] = React.useState("");
-    
+
     const [itemError, setItemError] = React.useState(null);
     const [costError, setCostError] = React.useState(null);
 
@@ -156,7 +156,7 @@ const EditProductDialog = ({
                                 className={classes.item}
                                 variant="subtitle1"
                                 color="primary"
-                                data-testid="costID"
+                                data-testid="priceID"
                             >
                                 Price
                             </Typography>
@@ -174,7 +174,7 @@ const EditProductDialog = ({
                             {costError && <p id="itemInvalid" className={classes.errormessage}>{costError}</p>}
                             <div className={classes.dialogBottom}>
                                 <Button
-                                    id="saveButton"
+                                    id="updateButton"
                                     variant="contained"
                                     color="primary"
                                     onClick={onUpdateButtonClick}

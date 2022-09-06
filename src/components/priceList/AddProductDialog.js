@@ -67,7 +67,6 @@ const AddProductDialog = ({
             price: cost,
             category_id: category
         };
-        console.log(itemError);
 
         if (category !== null && item !== null && cost !== null && itemError === null && costError === null) {
             handleAddProduct(productDetail);
@@ -151,7 +150,7 @@ const AddProductDialog = ({
                                 className={classes.item}
                                 variant="subtitle1"
                                 color="primary"
-                                data-testid="costID"
+                                data-testid="priceID"
                             >
                                 Price
                             </Typography>

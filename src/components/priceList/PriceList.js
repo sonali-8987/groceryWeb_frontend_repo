@@ -11,7 +11,7 @@ import { TablePagination, TableCell, TableContainer, TableBody, Table, Paper, Ta
 
 
 const columns = [
-    { id: 'category', label: 'CATEGORY', width: 170 },
+    { id: 'category', label: 'CATEGORY', width: 170 ,},
     { id: 'item', label: 'ITEM', width: 100 },
 
     { id: 'price', label: 'PRICE', width: 100 },
