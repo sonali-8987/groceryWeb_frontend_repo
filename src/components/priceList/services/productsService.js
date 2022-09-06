@@ -5,7 +5,7 @@ import apiService from "../../../helpers/apiService";
 export default {
 
     create: async (payload) => {
-        const response = await apiService.post("add", payload);  
+        const response = await apiService.post("add", payload);
         return response.data;
     },
 
@@ -19,7 +19,7 @@ export default {
 
     },
     edit: async (payload) => {
-       
+
         const response = await apiService.put("edit_product", payload);
         return response.data;
     }

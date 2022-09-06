@@ -52,7 +52,8 @@ export default makeStyles(() => ({
     padding: "5px 0px 0px 0px",
     marginTop: "20px",
     marginRight: "auto",
-    width: "8em"
+    width: "8em",
+    
   },
 
   successPopup: {
@@ -64,6 +65,10 @@ export default makeStyles(() => ({
     marginTop: "-2px",
     marginBottom: "-8px"
   },
+  dialogButton:{
+    textTransform:"none",
+    marginRight: "auto",
+  }
 
 
 })

@@ -2,27 +2,33 @@ import { React, useState } from 'react';
 import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
 import styles from "./styles/headerStyles";
 import { Link } from 'react-router-dom';
+import logo from "../logo/grocery.ico"
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+
 
 
 
 const Header = () => {
     const classes = styles();
-   
+
 
     return (
 
         <>
-            <AppBar className={classes.appbar}>
+            <AppBar >
                 <Toolbar className={classes.toolbar}>
-                    <Link to="/" className={classes.linkStyle}>
-                        <Typography className={classes.header}>DailyNeeds</Typography>
-                    </Link>
+                    <div className={classes.headerTitle}>
+
+                        <LocalGroceryStoreIcon className={classes.logoStyle} sx={{ fontSize: 35 }} />
+                        <Link to="/" className={classes.linkStyle}>
+                            <Typography className={classes.header}>DailyNeeds</Typography>
+                        </Link>
+                    </div>
                     <div className={classes.pages}>
                         <Link to="/priceList" className={classes.linkStyle} >
-                            <Button className={classes.priceList}
-                                
-                            >
-                                Price List</Button>
+                            <Button className={classes.priceList} >
+                                Price List
+                            </Button>
                         </Link>
 
                         <Link to="/bill" className={classes.linkStyle}>
@@ -32,6 +38,7 @@ const Header = () => {
 
                 </Toolbar>
             </AppBar >
+            
         </>
 
     );

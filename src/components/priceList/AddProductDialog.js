@@ -18,14 +18,15 @@ const AddProductDialog = ({
 
     const { handleAddProduct, successMessage } = useAddProduct();
 
-
-    const [alertOpen, setAlertOpen] = React.useState(false);
-    const [category, setCategory] = React.useState();
+   
+   const [alertOpen, setAlertOpen] = React.useState(false);
+    const [category, setCategory] = React.useState([]);
     const [cost, setCost] = React.useState();
     const [item, setItem] = React.useState("");
 
     const [itemError, setItemError] = React.useState(null);
     const [costError, setCostError] = React.useState(null);
+
 
     const handleChange = (event) => {
         setCategory(event.target.value);
@@ -54,6 +55,7 @@ const AddProductDialog = ({
     };
 
     const handleClose = () => {
+        setCategory("");
         setItem("");
         setCost();
         setAlertOpen(false);
@@ -76,6 +78,9 @@ const AddProductDialog = ({
         setCost();
         setItem("");
         setAlertOpen(false);
+       
+
+
     }
 
 
@@ -167,12 +172,17 @@ const AddProductDialog = ({
                             />
                             {costError && <p id="itemInvalid" className={classes.errormessage}>{costError}</p>}
                             <div className={classes.dialogBottom}>
+
                                 <Button
                                     id="saveButton"
                                     variant="contained"
                                     color="primary"
-                                    onClick={onSaveButtonClick}
                                     className={classes.dialogButton}
+                                    onClick={onSaveButtonClick
+
+                                    }
+                                    
+
                                 >Save
                                 </Button>
 

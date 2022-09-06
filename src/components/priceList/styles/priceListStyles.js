@@ -13,6 +13,7 @@ export default makeStyles(() => ({
     addProductButton: {
         height: "50px",
         width: "200px",
+        textTransform:"none",
     },
 
     addProductText: {
@@ -26,6 +27,7 @@ export default makeStyles(() => ({
     editButton:{
         marginTop:"10px",
         marginBottom:"10px",
-    }
+    },
+    
     
 }))

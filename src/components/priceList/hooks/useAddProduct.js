@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Alert } from "@material-ui/lab";
 import { Snackbar } from "@material-ui/core";
 
+
+
 const useAddProduct = () => {
 
     const [showSuccessMessage, setShowsuccessMessage] = useState(false);
@@ -12,10 +14,12 @@ const useAddProduct = () => {
     };
 
     const successMessage = () => {
+        
 
         if (showSuccessMessage) {
 
             return (
+                
 
                 <Snackbar open={true} autoHideDuration={4000} onClose={handleClose}>
                     <Alert severity="success" sx={{ width: '100%' }}>
@@ -35,10 +39,9 @@ const useAddProduct = () => {
 
                 response = responseData;
 
-                window.location.reload(true);
+               window.location.reload(true);
 
                 setShowsuccessMessage(true);
-
 
                 return response.data;
 

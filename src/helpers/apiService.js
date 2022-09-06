@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { urls } from '../config/env-config';
 
+// eslint-disable-next-line
 export default {
 
     get: async (path) => {
@@ -11,11 +12,11 @@ export default {
         return axios.post(`${urls.service}/${path}`, payload);
     },
 
-    delete: async(path) => {
+    delete: async (path) => {
         return axios.delete(`${urls.service}/${path}`);
     },
-    put: async(path,payload) => {
-        return axios.put(`${urls.service}/${path}`,payload);
+    put: async (path, payload) => {
+        return axios.put(`${urls.service}/${path}`, payload);
     }
 
 };
