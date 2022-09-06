@@ -74,9 +74,8 @@ const PriceList = ({
             </div>
 
 
-
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                <TableContainer sx={{ maxHeight: 440 }}>
+                <TableContainer sx={{ maxHeight: 440 , position:"fixed" }}>
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
                             <TableRow>
@@ -155,7 +154,7 @@ const PriceList = ({
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
-            </Paper>
+            </Paper> 
 
 
             <AddProductDialog

@@ -19,7 +19,13 @@ export default makeStyles(() => ({
         fontWeight: "bold",
     },
     deleteButton:{
-        marginLeft:"25px"
+        marginLeft:"25px",
+        marginTop:"10px",
+        marginBottom:"10px",
     },
+    editButton:{
+        marginTop:"10px",
+        marginBottom:"10px",
+    }
     
 }))

@@ -5,7 +5,7 @@ export default makeStyles(() => ({
     footer: {
         padding: "0 4em",
         background: "#41435A",
-        position: "absolute",
+        position: "fixed",
         bottom: "0",
         left:"0",
         right:"0",
