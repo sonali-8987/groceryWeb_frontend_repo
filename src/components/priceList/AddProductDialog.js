@@ -25,6 +25,7 @@ const AddProductDialog = ({
     const [item, setItem] = React.useState("");
 
     const [itemError, setItemError] = React.useState(null);
+    const [costError, setCostError] = React.useState(null);
 
     const handleChange = (event) => {
         setCategory(event.target.value);
@@ -41,7 +42,14 @@ const AddProductDialog = ({
         setItem(event.target.value);
     };
 
+    const costValid = /^[1-9](\d+(\.\d{0,2})?|\.?\d{1,2})$/;
+
     const handleCostChange = (event) => {
+        if (!costValid.test(event.target.value)) {
+            setCostError('Price is invalid');
+        } else {
+            setCostError(null);
+        }
         setCost(event.target.value);
     };
 
@@ -61,7 +69,7 @@ const AddProductDialog = ({
         };
         console.log(itemError);
 
-        if (category !== null && item !== null && cost !== null && itemError === null) {
+        if (category !== null && item !== null && cost !== null && itemError === null && costError === null) {
             handleAddProduct(productDetail);
         }
 
@@ -154,9 +162,11 @@ const AddProductDialog = ({
                                 name="item"
                                 className={classes.inputField}
                                 onChange={handleCostChange}
+                                value={cost}
                                 type="text"
 
                             />
+                            {costError && <p id="itemInvalid" className={classes.errormessage}>{costError}</p>}
                             <div className={classes.dialogBottom}>
                                 <Button
                                     id="saveButton"
