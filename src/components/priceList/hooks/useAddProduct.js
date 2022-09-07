@@ -33,9 +33,11 @@ const useAddProduct = () => {
 
     const handleAddProduct = async (payload) => {
         var response;
+        console.log(payload);
         try {
             productsService.create(payload).then((responseData) => {
 
+            
                 response = responseData;
 
                window.location.reload(true);
