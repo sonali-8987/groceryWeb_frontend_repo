@@ -53,6 +53,18 @@ const Bill = () => {
                         </MenuItem>
                     ))}
                 </TextField>
+                <TextField
+                    id="standard-search"
+                    label="Enter Quantity"
+                    type="search"
+                    className={classes.quantity}
+                    variant="standard"
+                />
+
+                <Button variant="contained"
+                    color="primary" className={classes.cartButton}>
+                    Add to Cart
+                </Button>
 
             </div>
         </Box>

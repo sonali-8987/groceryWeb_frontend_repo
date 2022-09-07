@@ -12,6 +12,14 @@ export default makeStyles(() => ({
     itemDropDown:{
           marginRight:"22px"
     },
-   
 
+    cartButton:{
+        textTransform:"none",
+        marginRight:"15px"
+    },
+
+    quantity:{
+        marginRight:"22px"
+    }
+   
 }))
