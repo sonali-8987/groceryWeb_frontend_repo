@@ -5,9 +5,22 @@ import { MenuItem } from "@material-ui/core";
 import useItems from "./hooks/useItems";
 import { TextField } from "@material-ui/core";
 import { Box } from "@material-ui/core";
+import MaterialTable from "@material-table/core";
 
 const Bill = () => {
     const classes = styles();
+
+    const columns = [
+        {
+            title: 'ITEM', field: 'item'
+        },
+        {
+            title: 'QUANTITY', field: 'quantity'
+        },
+        {
+            title: 'PRICE', field: 'price'
+        },
+    ];
 
     const { allItem } = useItems();
 
@@ -19,6 +32,7 @@ const Bill = () => {
 
 
     return (
+        <>
 
         <Box
             component="form"
@@ -68,6 +82,22 @@ const Bill = () => {
 
             </div>
         </Box>
+
+<div className={classes.tableStyle} id="tableId">
+
+<MaterialTable
+    title=""
+   
+    columns={columns}
+    options={{
+        search: false,
+        actionsColumnIndex: -1,
+        headerStyle: { fontWeight: "bold", fontSize: "18px" },
+
+    }}
+    
+/></div>
+</>
     )
 }
 
