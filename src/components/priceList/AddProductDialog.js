@@ -21,7 +21,7 @@ const AddProductDialog = ({
 
 
     const [alertOpen, setAlertOpen] = React.useState(false);
-    const [category, setCategory] = React.useState([]);
+    const [category, setCategory] = React.useState();
     const [cost, setCost] = React.useState();
     const [item, setItem] = React.useState("");
 

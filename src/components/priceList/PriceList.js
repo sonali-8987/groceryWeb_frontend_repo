@@ -37,7 +37,7 @@ const PriceList = (
     const { categories } = useCategory();
 
     const { deleteProduct } = useDeleteProduct();
-    // const { products} = useProducts();
+
 
     const [addProductDialogPopUp, setAddProductDialogPopUp] = useState(false);
     const [editProductDialogPopUp, setEditProductDialogPopUp] = useState(false);
