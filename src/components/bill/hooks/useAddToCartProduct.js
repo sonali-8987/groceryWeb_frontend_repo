@@ -7,7 +7,6 @@ const useAddToCartProduct = () => {
         var response;
         try {
             cartService.create(payload).then((responseData) => {
-
                 response = responseData;
 
                 window.location.reload(true);

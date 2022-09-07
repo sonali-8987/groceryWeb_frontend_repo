@@ -7,22 +7,24 @@ import { TextField } from "@material-ui/core";
 import { Box } from "@material-ui/core";
 import MaterialTable from "@material-table/core";
 import useAddToCartProduct from "./hooks/useAddToCartProduct"
+import useCartItems from "./hooks/useCartItems";
 
 const Bill = () => {
     const classes = styles();
 
     const {handleAddToCartProduct} = useAddToCartProduct();
 
+    const {cartItems} = useCartItems();
 
     const columns = [
         {
-            title: 'ITEM', field: 'item'
+            title: 'ITEM', field: 'product.item'
         },
         {
             title: 'QUANTITY', field: 'quantity'
         },
         {
-            title: 'PRICE', field: 'price'
+            title: 'PRICE', field: ''
         },
     ];
 
@@ -116,7 +118,7 @@ const Bill = () => {
 
 <MaterialTable
     title=""
-   
+    data={cartItems}
     columns={columns}
     options={{
         search: false,

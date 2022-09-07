@@ -2,7 +2,7 @@ import { Button, Dialog, Typography } from "@material-ui/core";
 import React from "react";
 import styles from './styles/addProductDialogStyles';
 import { MenuItem } from "@material-ui/core";
-import { Select, Input, InputLabel, FormControl, Collapse } from "@material-ui/core";
+import { Select, InputLabel, FormControl, Collapse } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import PropTypes from "prop-types";
 import useAddProduct from "./hooks/useAddProduct";

@@ -8,6 +8,11 @@ export default {
         return response.data;
     },
 
+    fetchAll: async () => {
+        const response = await apiService.get("cart/item");
+        return response.data;
+    },
+
 
 }
 
