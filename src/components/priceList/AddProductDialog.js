@@ -6,6 +6,7 @@ import { Select, Input, InputLabel, FormControl, Collapse } from "@material-ui/c
 import { Alert } from "@material-ui/lab";
 import PropTypes from "prop-types";
 import useAddProduct from "./hooks/useAddProduct";
+import { TextField } from "@material-ui/core";
 
 
 const AddProductDialog = ({
@@ -18,8 +19,8 @@ const AddProductDialog = ({
 
     const { handleAddProduct, successMessage } = useAddProduct();
 
-   
-   const [alertOpen, setAlertOpen] = React.useState(false);
+
+    const [alertOpen, setAlertOpen] = React.useState(false);
     const [category, setCategory] = React.useState([]);
     const [cost, setCost] = React.useState();
     const [item, setItem] = React.useState("");
@@ -64,22 +65,26 @@ const AddProductDialog = ({
 
     const onSaveButtonClick = () => {
 
-        const productDetail = {
-            item: item,
-            price: cost,
-            category_id: category
-        };
+        if (category === null || item === null || cost == null)
+            setAlertOpen(true);
+        else {
 
-        if (category !== null && item !== null && cost !== null && itemError === null && costError === null) {
-            handleAddProduct(productDetail);
+            const productDetail = {
+                item: item,
+                price: cost,
+                category_id: category
+            };
+
+            if (category !== null && item !== null && cost !== null && itemError === null && costError === null) {
+                handleAddProduct(productDetail);
+            }
+
+
+            setCategory("")
+            setCost();
+            setItem("");
+            setAlertOpen(false);
         }
-
-        setCategory("")
-        setCost();
-        setItem("");
-        setAlertOpen(false);
-       
-
 
     }
 
@@ -129,67 +134,50 @@ const AddProductDialog = ({
                                         </MenuItem>
                                     ))}
                                 </Select>
+
+                                <TextField
+                                    required
+                                    id="item"
+                                    name="item"
+                                    label="Item"
+                                    type="search"
+                                    variant="standard"
+                                    value={item}
+                                    className={classes.inputField}
+                                    onChange={handleItemValidation}
+                                />
+                                {itemError && <p id="itemInvalid" className={classes.errormessage}>{itemError}</p>}
+
+                                <TextField
+                                    required
+                                    id="number"
+                                    name="rate"
+                                    label="Rate"
+                                    type="search"
+                                    variant="standard"
+                                    value={cost}
+                                    className={classes.inputField}
+                                    onChange={handleCostChange}
+                                />
+                                {costError && <p id="itemInvalid" className={classes.errormessage}>{costError}</p>}
+                                <div className={classes.dialogBottom}>
+
+                                    <Button
+                                        id="saveButton"
+                                        variant="contained"
+                                        color="primary"
+                                        className={classes.dialogButton}
+                                        onClick={onSaveButtonClick
+
+                                        }
+
+                                    >Save
+                                    </Button>
+
+                                    {successMessage()}
+
+                                </div>
                             </FormControl>
-
-                            <Typography
-                                className={classes.item}
-                                variant="subtitle1"
-                                color="primary"
-                                data-testid="itemID"
-                            >
-                                Item
-                            </Typography>
-                            <Input
-                                fullWidth
-                                required
-                                id="item"
-                                name="item"
-                                className={classes.inputField}
-                                onChange={handleItemValidation}
-                                value={item}
-                                type="text"
-                            />
-                            {itemError && <p id="itemInvalid" className={classes.errormessage}>{itemError}</p>}
-
-                            <Typography
-                                className={classes.item}
-                                variant="subtitle1"
-                                color="primary"
-                                data-testid="priceID"
-                            >
-                                Price
-                            </Typography>
-                            <Input
-                                fullWidth
-                                required
-                                id="number"
-                                name="item"
-                                className={classes.inputField}
-                                onChange={handleCostChange}
-                                value={cost}
-                                type="text"
-
-                            />
-                            {costError && <p id="itemInvalid" className={classes.errormessage}>{costError}</p>}
-                            <div className={classes.dialogBottom}>
-
-                                <Button
-                                    id="saveButton"
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.dialogButton}
-                                    onClick={onSaveButtonClick
-
-                                    }
-                                    
-
-                                >Save
-                                </Button>
-
-                                {successMessage()}
-
-                            </div>
-
                         </div>
                     </div>
 

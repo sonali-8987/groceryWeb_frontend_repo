@@ -68,7 +68,8 @@ export default makeStyles(() => ({
   dialogButton:{
     textTransform:"none",
     marginRight: "auto",
-  }
+  },
+  
 
 
 })

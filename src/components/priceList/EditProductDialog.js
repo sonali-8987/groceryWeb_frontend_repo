@@ -6,6 +6,7 @@ import { Select, Input, InputLabel, FormControl, Collapse } from "@material-ui/c
 import { Alert } from "@material-ui/lab";
 import PropTypes from "prop-types";
 import useEditProduct from "./hooks/useEditProduct";
+import { TextField } from "@mui/material";
 
 
 const EditProductDialog = ({
@@ -67,15 +68,18 @@ const EditProductDialog = ({
 
 
     const onUpdateButtonClick = () => {
+        if (category === null || item === null || cost == null)
+            setAlertOpen(true);
+
+        else{
 
         const productDetail = {
             id: editProductId,
             item: item,
             price: cost,
             category_id: category,
-            
+
         };
-        console.log(itemError);
 
         if (category !== null && item !== null && cost !== null && itemError === null && costError === null) {
             handleEditProduct(productDetail);
@@ -85,6 +89,7 @@ const EditProductDialog = ({
         setCost();
         setItem("");
         setAlertOpen(false);
+    }
     };
 
 
@@ -133,60 +138,46 @@ const EditProductDialog = ({
                                         </MenuItem>
                                     ))}
                                 </Select>
+
+                                <TextField
+                                    required
+                                    id="item"
+                                    name="item"
+                                    label="Item"
+                                    type="search"
+                                    variant="standard"
+                                    value={item}
+                                    className={classes.inputField}
+                                    onChange={handleItemValidation}
+                                />
+                                {itemError && <p id="itemInvalid" className={classes.errormessage}>{itemError}</p>}
+
+                                <TextField
+                                    required
+                                    id="number"
+                                    name="rate"
+                                    label="Rate"
+                                    type="search"
+                                    variant="standard"
+                                    value={cost}
+                                    className={classes.inputField}
+                                    onChange={handleCostChange}
+                                />
+                                {costError && <p id="itemInvalid" className={classes.errormessage}>{costError}</p>}
+
+                                <div className={classes.dialogBottom}>
+                                    <Button
+                                        id="updateButton"
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={onUpdateButtonClick}
+                                        className={classes.dialogButton}
+                                    >Update
+                                    </Button>
+
+                                    {successMessage()}
+                                </div>
                             </FormControl>
-
-                            <Typography
-                                className={classes.item}
-                                variant="subtitle1"
-                                color="primary"
-                                data-testid="itemID"
-                            >
-                                Item
-                            </Typography>
-                            <Input
-                                fullWidth
-                                required
-                                id="item"
-                                name="item"
-                                value={item}
-                                className={classes.inputField}
-                                onChange={handleItemValidation}
-                                type="text"
-                            />
-                            {itemError && <p id="itemInvalid" className={classes.errormessage}>{itemError}</p>}
-                            <Typography
-                                className={classes.item}
-                                variant="subtitle1"
-                                color="primary"
-                                data-testid="priceID"
-                            >
-                                Price
-                            </Typography>
-                            <Input
-                                fullWidth
-                                required
-                                id="number"
-                                name="item"
-                                className={classes.inputField}
-                                onChange={handleCostChange}
-                                value={cost}
-                                type="text"
-
-                            />
-                            {costError && <p id="itemInvalid" className={classes.errormessage}>{costError}</p>}
-                            <div className={classes.dialogBottom}>
-                                <Button
-                                    id="updateButton"
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={onUpdateButtonClick}
-                                    className={classes.dialogButton}
-                                >Update
-                                </Button>
-
-                                {successMessage()}
-
-                            </div>
 
                         </div>
                     </div>

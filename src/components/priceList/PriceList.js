@@ -16,12 +16,9 @@ const PriceList = (
 
 ) => {
 
-
     const classes = styles();
 
-
     const { products } = useProducts();
-
 
     const columns = [
 
@@ -32,7 +29,7 @@ const PriceList = (
             title: 'ITEM', field: 'item'
         },
         {
-            title: 'PRICE', field: 'price'
+            title: 'RATE( /KG )', field: 'price'
         },
     ];
 
@@ -62,7 +59,7 @@ const PriceList = (
                         setAddProductDialogPopUp(true);
 
                     }}
-                    
+
                 >
                     <Typography className={classes.addProductText}>
                         Add Product
@@ -102,7 +99,7 @@ const PriceList = (
                         },
 
                     ]}
-                   
+
 
 
                 /></div>

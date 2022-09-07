@@ -1,10 +1,8 @@
 import { React, useState } from 'react';
-import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
 import styles from "./styles/headerStyles";
 import { Link } from 'react-router-dom';
-import logo from "../logo/grocery.ico"
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
-
+import logo from "../logo/grocery1.png"
 
 
 
@@ -18,8 +16,7 @@ const Header = () => {
             <AppBar >
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.headerTitle}>
-
-                        <LocalGroceryStoreIcon className={classes.logoStyle} sx={{ fontSize: 35 }} />
+                        <Avatar src={logo}></Avatar>
                         <Link to="/" className={classes.linkStyle}>
                             <Typography className={classes.header}>DailyNeeds</Typography>
                         </Link>
@@ -38,6 +35,7 @@ const Header = () => {
 
                 </Toolbar>
             </AppBar >
+           
             
         </>
 
