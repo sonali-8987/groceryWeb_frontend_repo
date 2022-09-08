@@ -11,6 +11,7 @@ import useCartItems from "./hooks/useCartItems";
 import Delete from '@material-ui/icons/Delete';
 import useDeleteCartItem from "./hooks/useDeleteCartItem";
 import billService from "./services/billService";
+import cartService from "./services/cartService";
 
 
 const Bill = () => {
@@ -22,8 +23,6 @@ const Bill = () => {
     const { deleteCartItem } = useDeleteCartItem();
 
     const [billRequest,setBillRequest] = useState(false);
-
-
     useEffect( () => {
        if(billRequest){
              billService.fetchTotalPrice().then((totalPrice) => {
@@ -32,6 +31,19 @@ const Bill = () => {
              });
        }
     },[billRequest]);
+
+
+
+const [resetRequest,setResetRequest] = useState(false);
+    useEffect( () => {
+        if(resetRequest){
+              cartService.resetCart().then((response) => {
+                window.location.reload(true);
+              });
+        }
+        
+     },[resetRequest]);
+ 
 
 
     const columns = [
@@ -76,10 +88,6 @@ const Bill = () => {
 
         setItem("");
         setQuantity();
-    }
-
-
-    const onResetButtonClick = () => {
     }
 
 
@@ -179,7 +187,9 @@ const Bill = () => {
                 <Button className={classes.resetButton}
                     variant="contained"
                     color="primary"
-                    onClick={onResetButtonClick}
+                    onClick={ () => {
+                        setResetRequest(true);
+                    }}
 
                 >Reset</Button>
 

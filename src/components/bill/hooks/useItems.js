@@ -7,7 +7,7 @@ const useItems = () => {
 
   useEffect(() => {
     itemService.fetchAllItem().then((items) => {
-        setItems(items);
+      setItems(items);
     });
   }, []);
 

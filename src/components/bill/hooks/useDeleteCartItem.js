@@ -43,7 +43,7 @@ const useDeleteCartItem = () => {
     };
 
     return {
-        deleteCartItem : deleteCartItem,
+        deleteCartItem: deleteCartItem,
         successMessage: successMessage,
     };
 

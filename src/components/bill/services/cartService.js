@@ -18,6 +18,9 @@ export default {
         return response.data;
 
     },
-
+    resetCart: async () => {
+        const response = await apiService.delete(`cart/reset`);
+        return response.data;
+    }
 }
 
