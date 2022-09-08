@@ -13,6 +13,11 @@ export default {
         return response.data;
     },
 
+    delete: async (id) => {
+        const response = await apiService.delete(`cart/delete/${id}`);
+        return response.data;
+
+    },
 
 }
 
