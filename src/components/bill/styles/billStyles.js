@@ -18,6 +18,9 @@ export default makeStyles(() => ({
         textTransform: "none",
         marginRight: "15px"
     },
+    empty:{
+        fontWeight:"bold"
+    },
 
     quantity: {
         marginRight: "22px"

@@ -8,13 +8,28 @@ import { Box } from "@material-ui/core";
 import MaterialTable from "@material-table/core";
 import useAddToCartProduct from "./hooks/useAddToCartProduct"
 import useCartItems from "./hooks/useCartItems";
+import billService from "./services/billService";
+import { useEffect } from "react";
+
 
 const Bill = () => {
     const classes = styles();
 
+    const { allItem } = useItems();
+    const { cartItems } = useCartItems();
     const { handleAddToCartProduct } = useAddToCartProduct();
 
-    const { cartItems } = useCartItems();
+
+    const [billRequest, setBillRequest] = useState(false);
+
+    useEffect(() => {
+        if (billRequest) {
+            billService.fetchAll().then(bills => {
+            console.log(bills)
+            });
+        }
+    }, [billRequest]);
+
 
     const columns = [
         {
@@ -24,24 +39,25 @@ const Bill = () => {
             title: 'QUANTITY', field: 'quantity'
         },
         {
-            title: 'PRICE', field: ''
+            title: 'PRICE', field: '', emptyValue: () => <div className={classes.empty}>_</div>
         },
     ];
 
-    const { allItem } = useItems();
-
-    const [item, setItem] = useState("");
-    const [quantity, setQuantity] = useState();
-    const [totalPrice, setTotalPrice] = useState("Not Calculated");
 
     const user_id = 1;
+    const [totalPrice, setTotalPrice] = useState("Not Calculated");
 
-    const handleChange = (event) => {
+
+    const [item, setItem] = useState("");
+    const handleItem = (event) => {
         setItem(event.target.value);
     };
+
+    const [quantity, setQuantity] = useState();
     const handleQuantity = (event) => {
         setQuantity(event.target.value);
     }
+
 
     const onAddButtonClick = () => {
 
@@ -59,14 +75,9 @@ const Bill = () => {
         setQuantity();
     }
 
-    const onBillButtonClick = () => {
 
-
-    }
     const onResetButtonClick = () => {
-
     }
-
     return (
         <>
 
@@ -86,7 +97,7 @@ const Bill = () => {
                         select
                         label="Select Item"
                         variant="standard"
-                        onChange={handleChange}
+                        onChange={handleItem}
                         value={item}
                         data-testid="dropDownId"
                         className={classes.itemDropDown}
@@ -145,7 +156,7 @@ const Bill = () => {
                 <Button className={classes.billButton}
                     variant="contained"
                     color="primary"
-                    onClick={onBillButtonClick}
+                    onClick={() => setBillRequest(true)}
 
                 >Generate Bill</Button>
                 <Button className={classes.resetButton}
@@ -160,6 +171,5 @@ const Bill = () => {
         </>
     )
 }
-
 
 export default Bill;
