@@ -8,8 +8,8 @@ import { Box } from "@material-ui/core";
 import MaterialTable from "@material-table/core";
 import useAddToCartProduct from "./hooks/useAddToCartProduct"
 import useCartItems from "./hooks/useCartItems";
-import billService from "./services/billService";
-import { useEffect } from "react";
+import Delete from '@material-ui/icons/Delete';
+import useDeleteCartItem from "./hooks/useDeleteCartItem";
 
 
 const Bill = () => {
@@ -18,28 +18,18 @@ const Bill = () => {
     const { allItem } = useItems();
     const { cartItems } = useCartItems();
     const { handleAddToCartProduct } = useAddToCartProduct();
-
-
-    const [billRequest, setBillRequest] = useState(false);
-
-    useEffect(() => {
-        if (billRequest) {
-            billService.fetchAll().then(bills => {
-            console.log(bills)
-            });
-        }
-    }, [billRequest]);
+    const { deleteCartItem } = useDeleteCartItem();
 
 
     const columns = [
         {
-            title: 'ITEM', field: 'product.item'
+            title: 'ITEM', field: 'item'
         },
         {
             title: 'QUANTITY', field: 'quantity'
         },
         {
-            title: 'PRICE', field: '', emptyValue: () => <div className={classes.empty}>_</div>
+            title: 'PRICE', field: 'price', 
         },
     ];
 
@@ -78,6 +68,12 @@ const Bill = () => {
 
     const onResetButtonClick = () => {
     }
+
+    const onBillButtonClick = () =>{
+
+    }
+
+
     return (
         <>
 
@@ -147,6 +143,16 @@ const Bill = () => {
                         headerStyle: { fontWeight: "bold", fontSize: "18px" },
 
                     }}
+                    actions={[
+                        {
+                            icon: Delete,
+                            tooltip: 'Delete Product',
+                            onClick: (event, rowData) => {
+                                 deleteCartItem(rowData.id);
+                            }
+                        },
+
+                    ]}
 
                 /></div>
 
@@ -156,7 +162,7 @@ const Bill = () => {
                 <Button className={classes.billButton}
                     variant="contained"
                     color="primary"
-                    onClick={() => setBillRequest(true)}
+                    onClick={onBillButtonClick}
 
                 >Generate Bill</Button>
                 <Button className={classes.resetButton}
