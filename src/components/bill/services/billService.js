@@ -4,8 +4,8 @@ import apiService from "../../../helpers/apiService";
 export default {
 
 
-    fetchAll: async () => {
-        const response = await apiService.get("bill");
+    fetchTotalPrice: async () => {
+        const response = await apiService.get("cart/total_price");
         return response.data;
     },
 

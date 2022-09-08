@@ -1,5 +1,5 @@
 import { Button, Typography } from "@material-ui/core";
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import styles from "./styles/billStyles"
 import { MenuItem } from "@material-ui/core";
 import useItems from "./hooks/useItems";
@@ -10,6 +10,7 @@ import useAddToCartProduct from "./hooks/useAddToCartProduct"
 import useCartItems from "./hooks/useCartItems";
 import Delete from '@material-ui/icons/Delete';
 import useDeleteCartItem from "./hooks/useDeleteCartItem";
+import billService from "./services/billService";
 
 
 const Bill = () => {
@@ -19,6 +20,18 @@ const Bill = () => {
     const { cartItems } = useCartItems();
     const { handleAddToCartProduct } = useAddToCartProduct();
     const { deleteCartItem } = useDeleteCartItem();
+
+    const [billRequest,setBillRequest] = useState(false);
+
+
+    useEffect( () => {
+       if(billRequest){
+             billService.fetchTotalPrice().then((totalPrice) => {
+                setTotalPrice(totalPrice);
+
+             });
+       }
+    },[billRequest]);
 
 
     const columns = [
@@ -67,10 +80,6 @@ const Bill = () => {
 
 
     const onResetButtonClick = () => {
-    }
-
-    const onBillButtonClick = () =>{
-
     }
 
 
@@ -162,7 +171,9 @@ const Bill = () => {
                 <Button className={classes.billButton}
                     variant="contained"
                     color="primary"
-                    onClick={onBillButtonClick}
+                    onClick={() => {
+                       setBillRequest(true);
+                    }}
 
                 >Generate Bill</Button>
                 <Button className={classes.resetButton}

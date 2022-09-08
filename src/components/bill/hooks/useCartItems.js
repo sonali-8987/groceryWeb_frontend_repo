@@ -12,7 +12,6 @@ const useCartItems = () => {
             setCartItems(items);
         });
 
-
     }, []);
 
     return {
