@@ -1,9 +1,6 @@
 import React from "react";
-import Footer from "../footer/Footer";
-import Header from "../header/Header";
 import logo from "./grocery1.png"
-import { Box, Container } from "@material-ui/core";
-import { ClassNames } from "@emotion/react";
+import { Box,} from "@material-ui/core";
 import styles from "./styles/homeStyles";
 
 

@@ -1,8 +1,8 @@
-import { React, useState } from 'react';
+import { React} from 'react';
 import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
 import styles from "./styles/headerStyles";
 import { Link } from 'react-router-dom';
-
+import logo from "./logo/grocery.png";
 
 const Header = () => {
     const classes = styles();
@@ -14,6 +14,7 @@ const Header = () => {
             <AppBar >
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.headerTitle}>
+                        <Avatar src = {logo}></Avatar>
                         <Link to="/" className={classes.linkStyle}>
                             <Typography className={classes.header}>DailyNeeds</Typography>
                         </Link>
