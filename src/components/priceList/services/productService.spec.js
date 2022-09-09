@@ -1,4 +1,3 @@
-import { when } from "jest-when";
 import productsService from './productsService'
 import apiService from "../../../helpers/apiService";
 

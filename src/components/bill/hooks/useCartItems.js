@@ -8,7 +8,7 @@ const useCartItems = () => {
     useEffect(() => {
 
         cartService.fetchAll().then(items => {
-          
+
             setCartItems(items);
         });
 

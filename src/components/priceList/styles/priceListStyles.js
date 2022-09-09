@@ -13,22 +13,21 @@ export default makeStyles(() => ({
     addProductButton: {
         height: "50px",
         width: "200px",
-        textTransform:"none",
-        marginBottom:"2em",
+        textTransform: "none",
+        marginBottom: "2em",
     },
 
     addProductText: {
         fontWeight: "bold",
     },
-    deleteButton:{
-        marginLeft:"25px",
-        marginTop:"10px",
-        marginBottom:"10px",
+    deleteButton: {
+        marginLeft: "25px",
+        marginTop: "10px",
+        marginBottom: "10px",
     },
-    editButton:{
-        marginTop:"10px",
-        marginBottom:"10px",
+    editButton: {
+        marginTop: "10px",
+        marginBottom: "10px",
     },
-    
-    
+
 }))

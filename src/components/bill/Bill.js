@@ -15,7 +15,6 @@ import cartService from "./services/cartService";
 import { FormLabel, RadioGroup, FormControlLabel, Radio, FormControl } from "@material-ui/core";
 
 
-
 const Bill = () => {
     const classes = styles();
 
@@ -59,7 +58,7 @@ const Bill = () => {
             title: 'PRICE', field: 'price',
         },
         {
-            title: 'UNIT', field: '', emptyValue: () => <div>KG</div>
+            title: 'UNIT', field: '', emptyValue: () => <div>Kg</div>
         }
     ];
 
@@ -92,7 +91,6 @@ const Bill = () => {
     const handleUnit = (event) => {
         setUnit(event.target.value);
     }
-
 
     const onAddButtonClick = () => {
 
@@ -204,6 +202,7 @@ const Bill = () => {
                         },
                         maxBodyHeight: 400,
                         minBodyHeight: 400,
+
 
                     }}
                     actions={[

@@ -44,8 +44,6 @@ const AddProductDialog = ({
         setItem(event.target.value);
     };
 
-   
-
     const costValid = /^([1-9])(\d+(\.\d{0,2})?|\.?\d{1,2})$/;
 
     const handleCostChange = (event) => {
@@ -81,13 +79,11 @@ const AddProductDialog = ({
                 handleAddProduct(productDetail);
             }
 
-
             setCategory("")
             setCost();
             setItem("");
             setAlertOpen(false);
         }
-
     }
 
 
@@ -142,6 +138,7 @@ const AddProductDialog = ({
                                     id="item"
                                     name="item"
                                     label="Item"
+                                    data-testid="itemID"
                                     type="search"
                                     variant="standard"
                                     value={item}
@@ -155,6 +152,7 @@ const AddProductDialog = ({
                                     id="number"
                                     name="rate"
                                     label="Rate"
+                                    data-testid="rateID"
                                     type="search"
                                     variant="standard"
                                     value={cost}
@@ -170,9 +168,7 @@ const AddProductDialog = ({
                                         color="primary"
                                         className={classes.dialogButton}
                                         onClick={onSaveButtonClick
-
                                         }
-
                                     >Save
                                     </Button>
 
@@ -187,7 +183,6 @@ const AddProductDialog = ({
                 <Collapse in={alertOpen}>
                     <Alert severity="error">Fields Can't be Empty!</Alert>
                 </Collapse>
-
 
             </Dialog>
         </>

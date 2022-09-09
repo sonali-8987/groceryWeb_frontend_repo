@@ -14,12 +14,9 @@ const useAddProduct = () => {
 
     const successMessage = () => {
 
-
         if (showSuccessMessage) {
 
             return (
-
-
                 <Snackbar open={true} autoHideDuration={4000} onClose={handleClose}>
                     <Alert severity="success" sx={{ width: '100%' }}>
                         Product Added Successfully!
@@ -28,7 +25,6 @@ const useAddProduct = () => {
 
             );
         }
-
     };
 
     const handleAddProduct = async (payload) => {

@@ -19,6 +19,9 @@ const PriceList = (
     const classes = styles();
 
     const { products } = useProducts();
+    const { categories } = useCategory();
+    const { deleteProduct } = useDeleteProduct();
+
 
     const columns = [
 
@@ -34,11 +37,6 @@ const PriceList = (
     ];
 
 
-    const { categories } = useCategory();
-
-    const { deleteProduct } = useDeleteProduct();
-
-
     const [addProductDialogPopUp, setAddProductDialogPopUp] = useState(false);
     const [editProductDialogPopUp, setEditProductDialogPopUp] = useState(false);
     const [editProductId, setEditProductId] = useState(0);
@@ -47,9 +45,7 @@ const PriceList = (
     return (
 
         <>
-
             <div className={classes.priceListContainer}>
-
                 <Button
                     id="addProductButton"
                     className={classes.addProductButton}
@@ -107,12 +103,8 @@ const PriceList = (
                             onClick: (event, rowData) => {
                                 deleteProduct(rowData.id);
                             },
-
                         },
-
                     ]}
-
-
                 /></div>
 
             <AddProductDialog
@@ -121,7 +113,6 @@ const PriceList = (
                 allCategory={categories}
                 onClose={() => setAddProductDialogPopUp(false)}
 
-
             />
             <EditProductDialog
                 open={editProductDialogPopUp}
@@ -129,9 +120,7 @@ const PriceList = (
                 editProductId={editProductId}
                 onClose={() => setEditProductDialogPopUp(false)}
             />
-
         </>
-
     )
 
 };

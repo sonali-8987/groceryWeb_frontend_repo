@@ -12,7 +12,7 @@ export default makeStyles(() => ({
         color: 'white',
         fontWeight: "bold",
         fontSize: "28px",
-        marginLeft:"10px"
+        marginLeft: "10px"
     },
 
     pages: {
@@ -29,7 +29,7 @@ export default makeStyles(() => ({
         fontWeight: "bold",
         fontSize: "20px",
         marginRight: "28px",
-        textTransform:"none",
+        textTransform: "none",
 
     },
 
@@ -37,15 +37,15 @@ export default makeStyles(() => ({
         color: 'white',
         fontWeight: "bold",
         fontSize: "20px",
-        textTransform:"none",
+        textTransform: "none",
 
     },
-    
+
     headerTitle: {
-       display:"flex"
+        display: "flex"
     },
 
-   
+
 
 })
 );

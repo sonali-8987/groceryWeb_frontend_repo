@@ -6,6 +6,6 @@ export default makeStyles(() => ({
         marginTop: "10em",
         display: "flex",
         justifyContent: "center",
-        height:"43em"
+        height: "43em"
     },
 }))

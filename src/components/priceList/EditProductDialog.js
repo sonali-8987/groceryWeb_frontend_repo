@@ -2,7 +2,7 @@ import { Button, Dialog, Typography } from "@material-ui/core";
 import React from "react";
 import styles from './styles/addProductDialogStyles';
 import { MenuItem } from "@material-ui/core";
-import { Select, Input, InputLabel, FormControl, Collapse } from "@material-ui/core";
+import { Select, InputLabel, FormControl, Collapse } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import PropTypes from "prop-types";
 import useEditProduct from "./hooks/useEditProduct";
@@ -18,8 +18,6 @@ const EditProductDialog = ({
 }) => {
     const classes = styles();
 
-
-
     const { handleEditProduct, successMessage } = useEditProduct();
 
     const [alertOpen, setAlertOpen] = React.useState(false);
@@ -33,7 +31,6 @@ const EditProductDialog = ({
     const handleChange = (event) => {
         setCategory(event.target.value);
     };
-
 
     const handleClose = () => {
         setItem("");
@@ -71,25 +68,25 @@ const EditProductDialog = ({
         if (category === null || item === null || cost == null)
             setAlertOpen(true);
 
-        else{
+        else {
 
-        const productDetail = {
-            id: editProductId,
-            item: item,
-            price: cost,
-            category_id: category,
+            const productDetail = {
+                id: editProductId,
+                item: item,
+                price: cost,
+                category_id: category,
 
-        };
+            };
 
-        if (category !== null && item !== null && cost !== null && itemError === null && costError === null) {
-            handleEditProduct(productDetail);
+            if (category !== null && item !== null && cost !== null && itemError === null && costError === null) {
+                handleEditProduct(productDetail);
+            }
+
+            setCategory("")
+            setCost();
+            setItem("");
+            setAlertOpen(false);
         }
-
-        setCategory("")
-        setCost();
-        setItem("");
-        setAlertOpen(false);
-    }
     };
 
 
@@ -144,6 +141,7 @@ const EditProductDialog = ({
                                     id="item"
                                     name="item"
                                     label="Item"
+                                    data-testid="itemID"
                                     type="search"
                                     variant="standard"
                                     value={item}
@@ -157,6 +155,7 @@ const EditProductDialog = ({
                                     id="number"
                                     name="rate"
                                     label="Rate"
+                                    data-testid="rateID"
                                     type="search"
                                     variant="standard"
                                     value={cost}
@@ -174,7 +173,6 @@ const EditProductDialog = ({
                                         className={classes.dialogButton}
                                     >Update
                                     </Button>
-
                                     {successMessage()}
                                 </div>
                             </FormControl>
@@ -186,8 +184,6 @@ const EditProductDialog = ({
                 <Collapse in={alertOpen}>
                     <Alert severity="error">Fields Can't be Empty!</Alert>
                 </Collapse>
-
-
             </Dialog>
         </>
 

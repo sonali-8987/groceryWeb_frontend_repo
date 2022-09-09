@@ -14,6 +14,7 @@ export default makeStyles(() => ({
     flexDirection: "column",
     width: "20em",
   },
+
   dialogHeader: {
     fontWeight: "bold",
     padding: "10px 0px 20px 10px",
@@ -24,13 +25,16 @@ export default makeStyles(() => ({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+
   closeIconColor: {
     color: "black",
   },
+
   dialogContent: {
     display: "flex",
     flexDirection: "row",
   },
+
   dialogMain: {
     display: "flex",
     padding: "10px 20px 20px 15px",
@@ -53,24 +57,24 @@ export default makeStyles(() => ({
     marginTop: "20px",
     marginRight: "auto",
     width: "8em",
-    
+
   },
 
   successPopup: {
     marginTop: "350px",
     justifyContent: "left",
   },
+
   errormessage: {
     color: "red",
     marginTop: "-2px",
     marginBottom: "-8px"
   },
-  dialogButton:{
-    textTransform:"none",
+
+  dialogButton: {
+    textTransform: "none",
     marginRight: "auto",
   },
-  
-
 
 })
 );

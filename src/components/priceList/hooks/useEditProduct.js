@@ -18,7 +18,7 @@ const useEditProduct = () => {
 
                 <Snackbar open={showSuccessMessage} autoHideDuration={4000} onClose={handleClose}>
                     <Alert severity="success" sx={{ width: '100%' }}>
-                        Product Added Successfully!
+                        Product Updated Successfully!
                     </Alert>
                 </Snackbar>
 

@@ -65,6 +65,6 @@ describe("Basic Rendering add Product Dialog Pop-up", () => {
                 onClose={onClose}
             />
         );
-        expect(getByTestId("priceID")).toHaveTextContent("Price");
+        expect(getByTestId("rateID")).toHaveTextContent("Rate");
     });
 });
