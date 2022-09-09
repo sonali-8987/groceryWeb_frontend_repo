@@ -12,6 +12,8 @@ import Delete from '@material-ui/icons/Delete';
 import useDeleteCartItem from "./hooks/useDeleteCartItem";
 import billService from "./services/billService";
 import cartService from "./services/cartService";
+import { FormLabel, RadioGroup, FormControlLabel, Radio, FormControl } from "@material-ui/core";
+
 
 
 const Bill = () => {
@@ -22,28 +24,28 @@ const Bill = () => {
     const { handleAddToCartProduct } = useAddToCartProduct();
     const { deleteCartItem } = useDeleteCartItem();
 
-    const [billRequest,setBillRequest] = useState(false);
-    useEffect( () => {
-       if(billRequest){
-             billService.fetchTotalPrice().then((totalPrice) => {
+    const [billRequest, setBillRequest] = useState(false);
+    useEffect(() => {
+        if (billRequest) {
+            billService.fetchTotalPrice().then((totalPrice) => {
                 setTotalPrice(totalPrice);
 
-             });
-       }
-    },[billRequest]);
-
-
-
-const [resetRequest,setResetRequest] = useState(false);
-    useEffect( () => {
-        if(resetRequest){
-              cartService.resetCart().then((response) => {
-                window.location.reload(true);
-              });
+            });
         }
-        
-     },[resetRequest]);
- 
+    }, [billRequest]);
+
+
+
+    const [resetRequest, setResetRequest] = useState(false);
+    useEffect(() => {
+        if (resetRequest) {
+            cartService.resetCart().then((response) => {
+                window.location.reload(true);
+            });
+        }
+
+    }, [resetRequest]);
+
 
 
     const columns = [
@@ -54,7 +56,7 @@ const [resetRequest,setResetRequest] = useState(false);
             title: 'QUANTITY', field: 'quantity'
         },
         {
-            title: 'PRICE', field: 'price', 
+            title: 'PRICE', field: 'price',
         },
     ];
 
@@ -71,6 +73,11 @@ const [resetRequest,setResetRequest] = useState(false);
     const [quantity, setQuantity] = useState();
     const handleQuantity = (event) => {
         setQuantity(event.target.value);
+    }
+
+    const [unit, setUnit] = useState("");
+    const handleUnit = (event) => {
+        setUnit(event.target.value);
     }
 
 
@@ -137,6 +144,18 @@ const [resetRequest,setResetRequest] = useState(false);
                         onChange={handleQuantity}
                         value={quantity}
                     />
+                    <FormControl className={classes.radioButton}>
+                        <FormLabel id="demo-controlled-radio-buttons-group">Unit</FormLabel>
+                        <RadioGroup
+                            aria-labelledby="demo-controlled-radio-buttons-group"
+                            name="controlled-radio-buttons-group"
+                            value={unit}
+                            onChange={handleUnit}
+                        >
+                            <FormControlLabel value="kg" control={<Radio size="small" color="primary" />} label="Kg" />
+                            <FormControlLabel value="gm" control={<Radio size="small" color="primary" />} label="Gm" />
+                        </RadioGroup>
+                    </FormControl>
 
                     <Button variant="contained"
                         color="primary" className={classes.cartButton}
@@ -144,7 +163,6 @@ const [resetRequest,setResetRequest] = useState(false);
                     >
                         Add to Cart
                     </Button>
-
                 </div>
             </Box>
 
@@ -165,7 +183,7 @@ const [resetRequest,setResetRequest] = useState(false);
                             icon: Delete,
                             tooltip: 'Delete Product',
                             onClick: (event, rowData) => {
-                                 deleteCartItem(rowData.id);
+                                deleteCartItem(rowData.id);
                             }
                         },
 
@@ -180,14 +198,14 @@ const [resetRequest,setResetRequest] = useState(false);
                     variant="contained"
                     color="primary"
                     onClick={() => {
-                       setBillRequest(true);
+                        setBillRequest(true);
                     }}
 
                 >Generate Bill</Button>
                 <Button className={classes.resetButton}
                     variant="contained"
                     color="primary"
-                    onClick={ () => {
+                    onClick={() => {
                         setResetRequest(true);
                     }}
 

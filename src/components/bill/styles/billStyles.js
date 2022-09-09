@@ -16,10 +16,12 @@ export default makeStyles(() => ({
 
     cartButton: {
         textTransform: "none",
-        marginRight: "15px"
+        marginRight: "2.5em",
+        height: "3.5em",
+        widht: "8.5em"
     },
-    empty:{
-        fontWeight:"bold"
+    empty: {
+        fontWeight: "bold"
     },
 
     quantity: {
@@ -42,6 +44,12 @@ export default makeStyles(() => ({
         marginLeft: "10px",
         width: "6em",
         height: "3em",
-    }
+    },
+    radioButton: {
+        marginRight: "10px",
+        marginTop: "-9px",
+        marginBottom: "1.8em"
+
+    },
 
 }))
