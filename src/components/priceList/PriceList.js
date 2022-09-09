@@ -74,9 +74,19 @@ const PriceList = (
                     data={products}
                     columns={columns}
                     options={{
+
                         search: false,
+                        paging: false,
                         actionsColumnIndex: -1,
-                        headerStyle: { fontWeight: "bold", fontSize: "18px" },
+
+                        showTitle: false,
+                        toolbar: false,
+                        headerStyle: {
+                            position: "sticky",
+                            top: "0",
+                            fontWeight: "bold", fontSize: "18px"
+                        },
+                        maxBodyHeight: 400,
 
                     }}
                     actions={[
@@ -89,17 +99,18 @@ const PriceList = (
                                 setEditProductId(rowData.id);
                             },
 
+
                         },
                         {
                             icon: Delete,
                             tooltip: 'Delete Product',
                             onClick: (event, rowData) => {
                                 deleteProduct(rowData.id);
-                            }
+                            },
+
                         },
 
                     ]}
-
 
 
                 /></div>

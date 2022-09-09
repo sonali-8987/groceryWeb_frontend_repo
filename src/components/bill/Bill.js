@@ -174,13 +174,23 @@ const Bill = () => {
             <div className={classes.tableStyle} id="tableId">
 
                 <MaterialTable
-                    title=""
+
                     data={cartItems}
                     columns={columns}
                     options={{
+
                         search: false,
+                        paging: false,
                         actionsColumnIndex: -1,
-                        headerStyle: { fontWeight: "bold", fontSize: "18px" },
+
+                        showTitle: false,
+                        toolbar: false,
+                        headerStyle: {
+                            position: "sticky",
+                            top: "0",
+                            fontWeight: "bold", fontSize: "18px"
+                        },
+                        maxBodyHeight: 400,
 
                     }}
                     actions={[
