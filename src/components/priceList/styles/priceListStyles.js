@@ -14,6 +14,7 @@ export default makeStyles(() => ({
         height: "50px",
         width: "200px",
         textTransform:"none",
+        marginBottom:"2em",
     },
 
     addProductText: {

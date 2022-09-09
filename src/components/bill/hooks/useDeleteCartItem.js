@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import cartService from "../services/cartService";
 import { Alert } from "@material-ui/lab";
 import { Snackbar } from "@material-ui/core";

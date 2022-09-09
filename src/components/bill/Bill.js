@@ -53,11 +53,14 @@ const Bill = () => {
             title: 'ITEM', field: 'item'
         },
         {
-            title: 'QUANTITY', field: 'quantity'
+            title: 'QUANTITY', field: 'quantity.magnitude'
         },
         {
             title: 'PRICE', field: 'price',
         },
+        {
+            title: 'UNIT', field: '', emptyValue: () => <div>KG</div>
+        }
     ];
 
 
@@ -70,9 +73,9 @@ const Bill = () => {
         setItem(event.target.value);
     };
 
-    const [quantity, setQuantity] = useState();
-    const handleQuantity = (event) => {
-        setQuantity(event.target.value);
+    const [magnitude, setMagnitude] = useState();
+    const handleMagnitude = (event) => {
+        setMagnitude(event.target.value);
     }
 
     const [unit, setUnit] = useState("");
@@ -85,16 +88,18 @@ const Bill = () => {
 
         const productDetail = {
             product_id: item,
-            quantity: quantity,
-            user_id: user_id
+            magnitude: magnitude,
+            user_id: user_id,
+            unit: unit,
         };
 
-        if (item !== null && quantity !== null) {
+        if (item !== null && magnitude !== null && unit != null) {
             handleAddToCartProduct(productDetail);
         }
 
         setItem("");
-        setQuantity();
+        setMagnitude();
+        setUnit("");
     }
 
 
@@ -141,8 +146,8 @@ const Bill = () => {
                         type="search"
                         className={classes.quantity}
                         variant="standard"
-                        onChange={handleQuantity}
-                        value={quantity}
+                        onChange={handleMagnitude}
+                        value={magnitude}
                     />
                     <FormControl className={classes.radioButton}>
                         <FormLabel id="demo-controlled-radio-buttons-group">Unit</FormLabel>

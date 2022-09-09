@@ -18,7 +18,7 @@ export default makeStyles(() => ({
         textTransform: "none",
         marginRight: "2.5em",
         height: "3.5em",
-        widht: "8.5em"
+        widht: "8.5em",
     },
     empty: {
         fontWeight: "bold"
