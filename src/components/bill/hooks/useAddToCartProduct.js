@@ -8,14 +8,16 @@ const useAddToCartProduct = () => {
         try {
             cartService.create(payload).then((responseData) => {
                 response = responseData;
-
                 window.location.reload(true);
 
                 return response.data;
 
             });
 
-        } catch (err) { }
+        } catch (err) {
+           
+
+        }
     };
 
     return {

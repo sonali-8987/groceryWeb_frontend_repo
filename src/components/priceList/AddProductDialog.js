@@ -44,7 +44,9 @@ const AddProductDialog = ({
         setItem(event.target.value);
     };
 
-    const costValid = /^[1-9](\d+(\.\d{0,2})?|\.?\d{1,2})$/;
+   
+
+    const costValid = /^([1-9])(\d+(\.\d{0,2})?|\.?\d{1,2})$/;
 
     const handleCostChange = (event) => {
         if (!costValid.test(event.target.value)) {

@@ -74,9 +74,19 @@ const Bill = () => {
     };
 
     const [magnitude, setMagnitude] = useState();
-    const handleMagnitude = (event) => {
+    const [quantityError, setQuantityError] = useState(null);
+
+    const quantityValid = /^[1-9]\d{0,7}(?:\.\d{1,2})?$/;
+
+    const handleQuantity = (event) => {
+        if (!quantityValid.test(event.target.value)) {
+            setQuantityError('Quantity is invalid');
+        } else {
+            setQuantityError(null);
+
+        }
         setMagnitude(event.target.value);
-    }
+    };
 
     const [unit, setUnit] = useState("");
     const handleUnit = (event) => {
@@ -139,16 +149,18 @@ const Bill = () => {
                             </MenuItem>
                         ))}
                     </TextField>
-                    <TextField
-                        id="standard-search"
-                        required
-                        label="Enter Quantity"
-                        type="search"
-                        className={classes.quantity}
-                        variant="standard"
-                        onChange={handleMagnitude}
-                        value={magnitude}
-                    />
+                    <div>
+                        <TextField
+                            id="standard-search"
+                            required
+                            label="Enter Quantity"
+                            type="search"
+                            className={classes.quantity}
+                            variant="standard"
+                            onChange={handleQuantity}
+                            value={magnitude}
+                        />
+                        {quantityError && <p id="itemInvalid" className={classes.errormessage}>{quantityError}</p>}</div>
                     <FormControl className={classes.radioButton}>
                         <FormLabel id="demo-controlled-radio-buttons-group">Unit</FormLabel>
                         <RadioGroup
@@ -191,6 +203,7 @@ const Bill = () => {
                             fontWeight: "bold", fontSize: "18px"
                         },
                         maxBodyHeight: 400,
+                        minBodyHeight: 400,
 
                     }}
                     actions={[
