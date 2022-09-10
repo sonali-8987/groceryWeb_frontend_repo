@@ -1,6 +1,6 @@
 import { Typography, Button } from "@material-ui/core";
 import styles from "./styles/priceListStyles";
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import AddProductDialog from "./AddProductDialog";
 import useCategory from "./hooks/useCategory";
 import useProducts from "./hooks/useProducts";
@@ -9,8 +9,7 @@ import EditProductDialog from "./EditProductDialog";
 import MaterialTable from "@material-table/core";
 import Delete from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit'
-
-
+import useAddProduct from "./hooks/useAddProduct";
 
 const PriceList = (
 
@@ -18,11 +17,13 @@ const PriceList = (
 
     const classes = styles();
 
-    const { products } = useProducts();
+    const { products} = useProducts();
     const { categories } = useCategory();
     const { deleteProduct } = useDeleteProduct();
 
-
+    const { save, setSave } = useAddProduct();
+    
+   
     const columns = [
 
         {
@@ -52,6 +53,8 @@ const PriceList = (
                     variant="contained"
                     color="primary"
                     onClick={() => {
+
+                        setSave(false);
                         setAddProductDialogPopUp(true);
 
                     }}
@@ -66,7 +69,7 @@ const PriceList = (
             <div className={classes.tableStyle} id="tableId">
 
                 <MaterialTable
-                    title=""
+
                     data={products}
                     columns={columns}
                     options={{
@@ -94,7 +97,6 @@ const PriceList = (
                                 setEditProductDialogPopUp(true);
                                 setEditProductId(rowData.id);
                             },
-
 
                         },
                         {

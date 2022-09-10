@@ -17,7 +17,7 @@ const AddProductDialog = ({
 }) => {
     const classes = styles();
 
-    const { handleAddProduct, successMessage } = useAddProduct();
+    const { handleAddProduct, message} = useAddProduct();
 
 
     const [alertOpen, setAlertOpen] = React.useState(false);
@@ -83,6 +83,7 @@ const AddProductDialog = ({
             setCost();
             setItem("");
             setAlertOpen(false);
+            onClose();
         }
     }
 
@@ -101,6 +102,7 @@ const AddProductDialog = ({
                     <Typography variant="h6" className={classes.dialogHeader}>
                         Add Product
                     </Typography>
+
                     <div className={classes.dialogContent}>
                         <div className={classes.dialogMain}>
                             <FormControl variant="standard" fullWidth>
@@ -169,10 +171,10 @@ const AddProductDialog = ({
                                         className={classes.dialogButton}
                                         onClick={onSaveButtonClick
                                         }
+
                                     >Save
                                     </Button>
 
-                                    {successMessage()}
 
                                 </div>
                             </FormControl>
@@ -185,6 +187,7 @@ const AddProductDialog = ({
                 </Collapse>
 
             </Dialog>
+            {message()}
         </>
 
     );

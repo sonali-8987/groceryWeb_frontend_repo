@@ -2,54 +2,68 @@ import productsService from "../services/productsService";
 import { useState } from "react";
 import { Alert } from "@material-ui/lab";
 import { Snackbar } from "@material-ui/core";
+import useProducts from "./useProducts";
 
 
 const useAddProduct = () => {
 
-    const [showSuccessMessage, setShowsuccessMessage] = useState(false);
+    const [showSuccess, setShowSuccess] = useState("");
+    const [showMessage, setShowMessage] = useState("");
+    const [save, setSave] = useState(false);
+    const {reload,setReload} = useProducts();
+
 
     const handleClose = () => {
-        setShowsuccessMessage(false);
+       window.location.reload(true);
+        setSave(false);
+       
+
     };
 
-    const successMessage = () => {
+    const message = () => {
 
-        if (showSuccessMessage) {
-
+        if (save) {
             return (
-                <Snackbar open={true} autoHideDuration={4000} onClose={handleClose}>
-                    <Alert severity="success" sx={{ width: '100%' }}>
-                        Product Added Successfully!
+                <Snackbar open={true} autoHideDuration={1000} onClose={handleClose}>
+                    <Alert severity={showSuccess} sx={{ width: '100%' }}>
+                        {showMessage}
                     </Alert>
                 </Snackbar>
-
             );
         }
     };
 
+
+
     const handleAddProduct = async (payload) => {
         var response;
-        console.log(payload);
-        try {
-            productsService.create(payload).then((responseData) => {
 
+        productsService.create(payload)
+        .then((responseData) => {
 
-                response = responseData;
+            response = responseData;
 
-                window.location.reload(true);
+            setShowMessage("Product Added Successfully");
+            setShowSuccess("success");
+            setReload(!reload);
+            return response.data;
 
-                setShowsuccessMessage(true);
+        }).catch((error) => {
 
-                return response.data;
+            setShowMessage(error.response.data);
+            setShowSuccess("error");
 
-            });
+        });
+        
+        setSave(true);
 
-        } catch (err) { }
     };
 
     return {
         handleAddProduct: handleAddProduct,
-        successMessage: successMessage,
+        message: message,
+        save: save,
+        setSave: setSave
     };
 };
 
